@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/e6a24fa0-37aa-48eb-99f2-30108af8eacd/resourceGroups/appsvc_linux_canadaeast/providers/Microsoft.Web/sites/mindpal-xy3",
+    "appService.deploySubpath": "."
+}

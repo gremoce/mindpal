@@ -1,0 +1,124 @@
+/* Full-screen gradient background animation */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Make body a column to fit navbar + content */
+    align-items: center;
+    justify-content: center;
+    font-family: Montserrat, sans-serif;
+    background: repeating-linear-gradient(30deg, #ffeec9, #bbd7e7, #d2cef7, #ffd8d8, #ffd4ab, #ffefcd, #d0ebd7);
+    background-size: 300% 300%;
+    animation: gradientMove 15s linear infinite;
+}
+
+/* Gradient Animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 100%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== NAVIGATION BAR ===== */
+nav {
+    position: fixed;   /* Sticks to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.4);  /* Dark blue with 60% opacity */
+    padding: 15px 0;
+    text-align: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Blurred effect for a glassmorphism look */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #00000067; 
+}
+button {
+    font-family: Montserrat, sans-serif;
+}
+
+/* ===== Page Content Adjustments ===== */
+.container {
+    text-align: center;
+    margin-top: 100px; 
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Input field */
+.search-box input {
+    border: none;
+    outline: none;
+    font-size: 18px;
+    flex-grow: 1;
+    padding: 8px;
+    background: transparent;
+}
+
+/* Close button */
+.close-btn {
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+/* Icon buttons */
+.icon-buttons {
+    margin-top: 20px;
+}
+
+.icon-btn {
+    width: 80px;
+    height: 40px;
+    background: #ffffff77;
+    color: rgb(46, 47, 51);
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    margin: 10px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.icon-btn:hover {
+    background: #ffffff33;
+}
+
+

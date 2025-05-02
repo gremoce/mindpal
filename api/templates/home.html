@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - MindPal{% endblock %}
+
+{% block content %}
+    <img src="{% static 'images/cat-wave.png' %}" width="120">
+    <h1>Welcome to MindPal</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="search-box">
+            <input type="text" name="user_input" style="font-family = 'Montserrat', sans-serif" placeholder="Tell us about your day!">
+            <button class="close-btn" type="reset">✖</button>
+        </div>
+        <button type="submit" class="icon-btn" style="font-family = 'Montserrat', sans-serif">Submit</button>
+    </form>
+
+    {% if quote %}
+        <div id="quote-container">
+            <p> {{ quote }}</p>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let quote = "{{ quote|escapejs }}";
+    let index = 0;
+    let speed = 40;
+
+    function revealQuote() {
+        let container = document.getElementById("quote-container");
+        container.innerHTML = "";  
+        index = 0;
+        typeEffect(container);
+    }
+
+    function typeEffect(container) {
+        if (index < quote.length) {
+            container.innerHTML += quote.charAt(index);
+            index++;
+            setTimeout(() => typeEffect(container), speed);
+        }
+    }
+
+    window.onload = function() {
+        revealQuote();
+    };
+</script>
+{% endblock %}

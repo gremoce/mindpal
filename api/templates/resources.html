@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<!DOCTYPE html>
+
+{% block title %}Resources - MindPal{% endblock %}
+
+{% block content %}
+    <img src="{% static 'images/cat-resources.png' %}" width="120">
+    <h1>Helpful Resources</h1>
+
+    <div class="accordion">
+        {% for category, items in resources.items %}
+        <div class="accordion-item">
+            <div class="accordion-header">{{ category }}</div>
+            <div class="accordion-content">
+                <div class="accordion-content-inner">
+                    {% for item in items %}
+                    <div class="resource-item">
+                        <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+                        <span>Type: {{ item.type }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+        <p>
+            Didn't find what you were looking for?
+        </p>
+        <a href="{% url 'chat' %}" style="color: rgb(48, 99, 150); font-weight: bold;">
+            Ask MindPal
+        </a>
+    </div>
+
+    <script>
+        const headers = document.querySelectorAll('.accordion-header');
+
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                const currentlyOpen = document.querySelector('.accordion-header.active');
+                if (currentlyOpen && currentlyOpen !== header) {
+                    currentlyOpen.classList.remove('active');
+                    currentlyOpen.nextElementSibling.style.maxHeight = null;
+                }
+
+                header.classList.toggle('active');
+                const content = header.nextElementSibling;
+
+                if (header.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+    </script>
+
+    <style>
+        h1 {
+            text-align: center;
+            color: rgb(0, 0, 0);;
+            margin-bottom: 2rem;
+        }
+
+        .accordion {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.15);;
+            border-radius: 30px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background-color:rgba(255, 255, 255, 0.53);
+            color: black;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.2rem;
+        }
+
+        .accordion-header.active::after {
+            content: '-';
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .accordion-content-inner {
+            padding: 0.75rem 1rem;
+        }
+
+        .resource-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-item a {
+            text-decoration: none;
+            color:rgb(48, 99, 150);
+            font-weight: 600;
+        }
+
+        .resource-item span {
+            display: block;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .accordion {
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .accordion-header {
+                font-size: 1rem;
+            }
+        }
+    </style>
+{% endblock %}
+
