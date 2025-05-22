@@ -5,7 +5,7 @@ import os
 import markdown
 
 # Set up Google Gemini API key and model
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAG-DOggIMop4WNv-zpGUgSpPnBnuV6Qic"  # Replace with your actual API key
+os.environ["GOOGLE_API_KEY"] = ""
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 model = genai.GenerativeModel('gemini-2.0-flash')
 
